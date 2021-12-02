@@ -1,0 +1,272 @@
+openapi: 3.0.0
+info:
+  title: Especificação para inclusão dos dados de crescimento da criança
+  description: Especificação para inclusão dos dados de crescimento da criança
+  contact:
+    email: midialp2@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html  
+  version: 1.0.0
+servers:
+  - url: https://development.teste-server.com/v1
+    description: Development server
+paths:
+  /progress:
+    get:
+      summary: Recuperar todos os progressos de todas as contas
+      parameters:
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_request'
+        "400":
+          description: Dados Request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "500":
+          description: Erro no servidor
+    post:
+      summary: Cria um novo progresso
+      parameters:
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      responses:
+        "201":
+          description: Criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_response'
+        "400":
+          description: Dados Request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "500":
+          description: Erro no servidor
+  /progress/{id}:
+    get:
+      summary: Recuperar um progresso pelo Id
+      parameters:
+      - name: id
+        in: path
+        description: Id de progresso da criança
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HM
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_response'
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "404":
+          description: Recurso {id} não encontrado
+        "500":
+          description: Erro no servidor
+    put:
+      summary: Atualiza um progresso pelo Id
+      parameters:
+      - name: id
+        in: path
+        description: Id de progresso da criança
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_request'
+        required: true
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "404":
+          description: Recurso {id} não encontrado
+        "500":
+          description: Erro no servidor
+    delete:
+      summary: Deleta um progresso pelo Id
+      parameters:
+      - name: id
+        in: path
+        description: Id de progresso da criança
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HM
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "404":
+          description: Recurso {id} não encontrado
+        "500":
+          description: Erro no servidor
+components:
+  schemas:
+    body_request:
+      required:
+      - accounts
+      - dateProgress
+      - headCircumference
+      - height
+      - id
+      - wight
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        height:
+          type: number
+          example: 1.02
+        wight:
+          type: number
+          example: 45
+        headCircumference:
+          type: number
+          example: 0.48
+        dateProgress:
+          type: string
+          format: date
+        accounts:
+          $ref: '#/components/schemas/body_request_accounts'
+    body_response:
+      required:
+      - accounts
+      - dateProgress
+      - headCircumference
+      - height
+      - wight
+      type: object
+      properties:
+        height:
+          type: number
+          example: 1.02
+        wight:
+          type: number
+          example: 45
+        headCircumference:
+          type: number
+          example: 0.48
+        dateProgress:
+          type: string
+          format: date
+        accounts:
+          $ref: '#/components/schemas/body_request_accounts'
+    body_request_accounts:
+      required:
+      - birthDate
+      - email
+      - firstName
+      - gender
+      - id
+      - lastName
+      - password
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        firstName:
+          type: string
+          example: Maria
+        lastName:
+          type: string
+          example: Jose
+        email:
+          type: string
+          format: email
+          example: mariajose@mariajose.com
+        password:
+          type: string
+          example: "1234"
+        birthDate:
+          type: string
+          format: date
+        gender:
+          type: string
+          example: F
+          enum:
+          - M
+          - F

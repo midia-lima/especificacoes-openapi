@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Especificação para criação da conta de usuário
+  description: Especificação para criação da conta de usuário
+  contact:
+    email: midialp2@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://development.teste-server.com/v1
+    description: Development server
+paths:
+  /report/{email}/progress:
+    parameters:
+      - name: email
+        in: path
+        required: true
+        description: E-mail do usuário cadastrado
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        style: simple
+        example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alu
+    get:
+      summary: Recuperar progresso de crescimento das crianças pelo e-mail da conta do usuário
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_response'
+        400: 
+          description: Dados Request enviados incorretos
+        401: 
+          description: Token inválido, inexistente ou expirado
+        404: 
+          description: Recurso {email} não encontrado
+        500:
+          description: Erro no servidor
+components:
+  schemas:
+    body_response:
+      type: object
+      required:
+          - height
+          - weigth
+          - headCircunference
+          - dateProgress        
+      properties:
+        height:
+          type: number
+          example: 1.02
+        wight: 
+          type: number
+          example: 45  
+        headCircumference:
+          type: number
+          example: 0.48  
+        dateProgress:   
+          type: string
+          format: date
+          example: "02/12/2021"  

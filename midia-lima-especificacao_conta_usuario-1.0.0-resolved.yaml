@@ -1,0 +1,268 @@
+openapi: 3.0.0
+info:
+  title: Especificação para criação da conta de usuário
+  description: Especificação para criação da conta de usuário
+  contact:
+    email: midialp2@gmail.com
+  license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html  
+  version: 1.0.0
+servers:
+  - url: https://development.teste-server.com/v1
+    description: Development server
+paths:
+  /accounts:
+    get:
+      summary: Recuperar todas as contas
+      parameters:
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_response'
+        "400":
+          description: Dados Request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "500":
+          description: Erro no servidor
+    post:
+      summary: Cria um nova conta
+      parameters:
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_request'
+        required: true
+      responses:
+        "201":
+          description: Criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_response'
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "500":
+          description: Erro no servidor
+  /accounts/{id}:
+    get:
+      summary: Recuperar um conta de usuário pelo Id
+      parameters:
+      - name: id
+        in: path
+        description: Id identificação da conta de usuário
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/body_response'
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "404":
+          description: Recurso {id} não encontrado
+        "500":
+          description: Erro no servidor
+    put:
+      summary: Atualizar um conta de usuário pelo Id
+      parameters:
+      - name: id
+        in: path
+        description: Id identificação da conta de usuário
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_request'
+        required: true
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "404":
+          description: Recurso {id} não encontrado
+        "500":
+          description: Erro no servidor
+    delete:
+      summary: Atualizar um conta de usuário pelo Id
+      parameters:
+      - name: id
+        in: path
+        description: Id identificação da conta de usuário
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: token
+        in: header
+        description: Token JWT no header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Dados request enviados incorretos
+        "401":
+          description: Token inválido, inexistente ou expirado
+        "404":
+          description: Recurso {id} não encontrado
+        "500":
+          description: Erro no servidor
+components:
+  schemas:
+    body_response:
+      required:
+      - birthDate
+      - contact
+      - email
+      - firstName
+      - gender
+      - id
+      - lastName
+      - password
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        firstName:
+          type: string
+          example: Maria
+        lastName:
+          type: string
+          example: Jose
+        email:
+          type: string
+          format: email
+          example: mariajose@mariajose.com
+        contact:
+          type: number
+          example: 948992589
+        password:
+          type: string
+          example: "1234"
+        birthDate:
+          type: string
+          format: date
+        gender:
+          type: string
+          example: F
+          enum:
+          - M
+          - F
+    body_request:
+      required:
+      - birthDate
+      - contact
+      - email
+      - firstName
+      - gender
+      - lastName
+      - password
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Maria
+        lastName:
+          type: string
+          example: Jose
+        email:
+          type: string
+          format: email
+          example: mariajose@mariajose.com
+        contact:
+          type: number
+          example: 948992589
+        password:
+          type: string
+          example: "1234"
+        birthDate:
+          type: string
+          format: date
+        gender:
+          type: string
+          example: F
+          enum:
+          - M
+          - F
