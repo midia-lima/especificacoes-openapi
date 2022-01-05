@@ -15,6 +15,7 @@ paths:
   /progress:
     get:
       summary: Recuperar todos os progressos de todas as contas
+      operationId: "putProgress"
       parameters:
       - name: token
         in: header
@@ -45,6 +46,7 @@ paths:
           description: Erro no servidor
     post:
       summary: Cria um novo progresso
+      operationId: "postProgress"
       parameters:
       - name: token
         in: header
@@ -76,6 +78,7 @@ paths:
   /progress/{id}:
     get:
       summary: Recuperar um progresso pelo Id
+      operationId: "getProgressId"
       parameters:
       - name: id
         in: path
@@ -116,6 +119,7 @@ paths:
           description: Erro no servidor
     put:
       summary: Atualiza um progresso pelo Id
+      operationId: "putProgressId"
       parameters:
       - name: id
         in: path
@@ -158,6 +162,7 @@ paths:
           description: Erro no servidor
     delete:
       summary: Deleta um progresso pelo Id
+      operationId: "deleteProgressId"
       parameters:
       - name: id
         in: path

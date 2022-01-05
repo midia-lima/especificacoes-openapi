@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info: 
+  title: BFF de consultorio
+  description: BFF para controlar médicos e suas especialidade dentro do consultorio
+  version: 1.0.0
+  termsOfService: https://mockapi.io/
+  contact:
+    name: Suporte a Devs
+    email: contato@contato.com
+    url: https://mockapi.io/
+  license:
+    name: GPLv3
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+externalDocs:
+  description: Documentacao burocratica
+  url: https://mockapi.io/
+servers:
+- url: https://development.gigantic-server.com/v1
+  description: servidor de desenvolvimento
+paths:
+  /especialidade:
+    get:
+      summary: Recupera todas as especialidades 
+      operationId: getEspecialidade
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: 
+                      type: integer
+                    descricao:
+                      type: string
+    post: 
+      summary: Cria uma nova especialidade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao: 
+                  type: string
+      operationId: postEspecialidade
+      responses:
+        '201':
+          description: Criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    id:
+                      type: integer
+                    descricao: 
+                      type: string
+                      
+  /especialidade/{id}:
+    parameters: 
+      - name: id
+        in: path
+        required: true  
+        schema:
+          type: integer
+    get:
+      summary: Recupera uma especialidade pelo id
+      operationId: getEspecialidadeById
+      parameters: 
+      - name: id
+        in: path
+        required: true  
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  descricao:
+                    type: string
+               
+        '404':
+          description: Especialidade não encontrada
+          content:
+            application/json:
+              example: "Not Found"
+            

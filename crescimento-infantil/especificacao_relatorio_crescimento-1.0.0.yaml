@@ -35,6 +35,7 @@ paths:
             .eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alu
     get:
       summary: Recuperar progresso de crescimento das crianças pelo e-mail da conta do usuário
+      operationId: "getReportRmailProgress"
       responses:
         200:
           description: OK

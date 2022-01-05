@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Especificação Autenticação de Usuário
-  description: Especificação Autenticação de Usuário
+  title: Especificacao Autenticacao de Usuario
+  description: Especificação Autenticacao de Usuario
   contact:
     email: midialp2@gmail.com
   license:
@@ -10,11 +10,12 @@ info:
   version: 1.0.0
 servers:
   - url: https://development.teste-server.com/v1
-    description: Development server
+    description: servidor de desenvolvimento
 paths:
   /login:
     post:
       summary: Login do usuário
+      operationId: "postLogin"
       requestBody:
         content:
           application/json:

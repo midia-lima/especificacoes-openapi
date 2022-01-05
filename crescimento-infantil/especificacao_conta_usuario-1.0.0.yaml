@@ -15,6 +15,7 @@ paths:
   /accounts:
     get:
       summary: Recuperar todas as contas
+      operationId: "getAccounts"
       parameters:
       - name: token
         in: header
@@ -45,6 +46,7 @@ paths:
           description: Erro no servidor
     post:
       summary: Cria um nova conta
+      operationId: "postAccounts"
       parameters:
       - name: token
         in: header
@@ -82,6 +84,7 @@ paths:
   /accounts/{id}:
     get:
       summary: Recuperar um conta de usuário pelo Id
+      operationId: "getAccountsId"
       parameters:
       - name: id
         in: path
@@ -122,6 +125,7 @@ paths:
           description: Erro no servidor
     put:
       summary: Atualizar um conta de usuário pelo Id
+      operationId: "putAccontsId"
       parameters:
       - name: id
         in: path
@@ -164,6 +168,7 @@ paths:
           description: Erro no servidor
     delete:
       summary: Atualizar um conta de usuário pelo Id
+      operationId: "deleteAccontsId"
       parameters:
       - name: id
         in: path
