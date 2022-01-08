@@ -17,9 +17,13 @@ externalDocs:
 servers:
 - url: https://development.gigantic-server.com/v1
   description: servidor de desenvolvimento
+tags:
+- name: "Especialidade Medica"  
 paths:
   /especialidade:
     get:
+      tags:
+      - "Especialidade Medica"
       summary: Recupera todas as especialidades 
       operationId: getEspecialidade
       responses:
@@ -28,14 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id: 
-                      type: integer
-                    descricao:
-                      type: string
+                $ref: "#/components/schemas/Especialidades"
     post: 
       summary: Cria uma nova especialidade
       requestBody:
@@ -53,13 +50,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                    id:
-                      type: integer
-                    descricao: 
-                      type: string
-                      
+                $ref: "#/components/schemas/Especialidade"                 
   /especialidade/{id}:
     parameters: 
       - name: id
@@ -82,16 +73,34 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id: 
-                    type: integer
-                  descricao:
-                    type: string
+                $ref: "#/components/schemas/Especialidade"
                
         '404':
           description: Especialidade não encontrada
           content:
             application/json:
               example: "Not Found"
+security:
+- auth: 
+    []
+components:
+  schemas:
+    Especialidade: 
+      type: object      
+      properties:
+        id:
+          type: integer
+          description: "teste"
+        description:  
+          type: string
+    Especialidades:
+      type: array
+      items:       
+        $ref: "#/components/schemas/Especialidade"
+  securitySchemes:
+    auth:  
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+          
             
